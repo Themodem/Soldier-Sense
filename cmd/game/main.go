@@ -10,6 +10,7 @@ import (
 func main() {
 	ebiten.SetWindowTitle("Soldier Sense")
 	ebiten.SetWindowSize(1904, 912)
+	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	if err := ebiten.RunGame(game.New()); err != nil {
 		log.Fatal(err)
 	}

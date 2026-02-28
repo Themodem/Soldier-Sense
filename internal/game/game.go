@@ -713,6 +713,12 @@ func (g *Game) handleInput() {
 		g.inspector.rawView = !g.inspector.rawView
 	}
 
+	// F: toggle fullscreen.
+	currentKeys[ebiten.KeyF] = ebiten.IsKeyPressed(ebiten.KeyF)
+	if currentKeys[ebiten.KeyF] && !g.prevKeys[ebiten.KeyF] {
+		ebiten.SetFullscreen(!ebiten.IsFullscreen())
+	}
+
 	g.prevKeys = currentKeys
 }
 
@@ -1163,7 +1169,7 @@ func (g *Game) drawHUD(screen *ebiten.Image) {
 		}
 		lines = append(lines, fmt.Sprintf("  [%d]%s %s", k+1, on, IntelMapKindName(k)))
 	}
-	lines = append(lines, "[H] toggle HUD")
+	lines = append(lines, "[F] fullscreen  [H] toggle HUD")
 	lines = append(lines, "WASD/arrows=pan  scroll=zoom")
 	lines = append(lines, fmt.Sprintf("zoom: %.1fx  click=inspect", g.camZoom))
 
